@@ -1,7 +1,4 @@
-var {
-    NativeModules: {
-        RNInstagramShare
-        }
-    } = require('react-native');
+import { NativeModules } from 'react-native';
+const RNInstagramShare = { NativeModules };
 
 module.exports = RNInstagramShare;
