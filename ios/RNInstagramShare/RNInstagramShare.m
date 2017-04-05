@@ -17,10 +17,12 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(share:(NSURL*)assetsLibraryURL
                   andMessage:(NSString*)message) {
     
-    NSString *escapedString   = [assetsLibraryURL.absoluteString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]; // urlencodedString
-    NSString *escapedCaption  = [message stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]; // urlencodedString
-    NSURL *instagramURL       = [NSURL URLWithString:[NSString stringWithFormat:@"instagram://library?AssetPath=%@&InstagramCaption=%@", escapedString, escapedCaption]];
+//     NSString *escapedString   = [assetsLibraryURL.absoluteString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]; // urlencodedString
+//     NSString *escapedCaption  = [message stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]; // urlencodedString
+//     NSURL *instagramURL       = [NSURL URLWithString:[NSString stringWithFormat:@"instagram://library?AssetPath=%@&InstagramCaption=%@", escapedString, escapedCaption]];
     
+    NSString* localId = [assetsLibraryURL.absoluteString substringWithRange:NSMakeRange(36, 36)]; //we need to get id from whole URL
+    NSURL *instagramURL       = [NSURL URLWithString:[NSString stringWithFormat:@"instagram://library?LocalIdentifier=%@", localId]];
     
     if ([[UIApplication sharedApplication] canOpenURL:instagramURL]) {
         [[UIApplication sharedApplication] openURL:instagramURL];
