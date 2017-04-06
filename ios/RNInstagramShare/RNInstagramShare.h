@@ -6,7 +6,7 @@
 //  Copyright © 2015 watzak. All rights reserved.
 //
 
-#import "RCTBridge.h"
+#import <React/RCTBridge.h>
 
 @interface RNInstagramShare : NSObject <RCTBridgeModule>
 
